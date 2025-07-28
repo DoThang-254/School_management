@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h2>Login Form</h2>
+<form method="post" th:action="@{authenticateTheUser}">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <div th:if="${param.error}">
+        <p>Login failed , pls try again</p>
+    </div>
+
+    <div>
+        <a th:href="@{/register/register-form}">Register</a>
+    </div>
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>

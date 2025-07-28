@@ -26,10 +26,6 @@ public class Staff {
     @OneToMany(mappedBy = "staff")
     private List<HeadingBook> headingBooks ;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
-
     @OneToMany(mappedBy = "staff")
     private List<ReportBook> reportBooks;
 
