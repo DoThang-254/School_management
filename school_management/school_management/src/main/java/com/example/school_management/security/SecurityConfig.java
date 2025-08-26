@@ -42,6 +42,7 @@ public class SecurityConfig {
         ).formLogin(
                 form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/authenticateTheUser")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
         ).exceptionHandling(
                 exception ->

@@ -47,4 +47,14 @@ public class AccountServiceImp implements AccountService {
         authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         return authorities;
     }
+
+    @Override
+    public void save(Account acc) {
+        accountRepository.save(acc);
+    }
+
+    @Override
+    public Account findByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
 }
