@@ -31,15 +31,21 @@ public class SecurityConfig {
                 configurer ->
                         configurer.requestMatchers("/home")
                                 .permitAll()
+                                .requestMatchers(("/parent/**")).hasRole("PARENT")
+                                .requestMatchers(("/student/**")).hasRole("STUDENT")
+                                .requestMatchers(("/teacher/**")).hasRole("TEACHER")
+                                .requestMatchers(("/admin/**")).hasRole("ADMIN")
+                                .requestMatchers("/accessdenied").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
                                 .anyRequest().authenticated()
 
         ).formLogin(
-                form -> form.loginPage("/login")
+                form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/authenticateTheUser")
                         .permitAll()
         ).exceptionHandling(
                 exception ->
-                        exception.accessDeniedPage("/accessdenied")
+                        exception.accessDeniedPage("/auth/accessdenied")
         );
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());

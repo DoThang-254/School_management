@@ -3,12 +3,16 @@ package com.example.school_management.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LoginController {
+@RequestMapping("/auth")
+public class AuthController {
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {
-        return "login";
+        return "auth/login";
     }
+    @GetMapping("/register")
+    public String showRegisterPage(Model model) {return "auth/register" ;}
 }

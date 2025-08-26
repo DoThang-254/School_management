@@ -37,15 +37,6 @@ public class AccountServiceImp implements AccountService {
             throw new UsernameNotFoundException(username);
 
         }
-        System.out.println("Tìm thấy user: " + acc.getUsername());
-        System.out.println("Tìm thấy user: " + acc.getPassword());
-        System.out.println("Tìm thấy user: " + acc.getRole().getRoleName());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String rawPassword = "123456";
-        String encodedPassword = encoder.encode(rawPassword);
-        System.out.println("Encoded password: " + encodedPassword);
-        System.out.println(passwordEncoder.matches("123456", acc.getPassword()));
-
         return new User(acc.getUsername(),
                 acc.getPassword(),
                 getGrantedAuthorities(acc.getRole()));
