@@ -16,6 +16,8 @@ public class HomeController {
     public String admin(Model model){
         return "admin/admin";
     }
+    @GetMapping("/managestudent")
+    public String manageStudent(Model model){return "admin/managestudent";}
 
     @GetMapping("/teacher")
     public String teacher(Model model){

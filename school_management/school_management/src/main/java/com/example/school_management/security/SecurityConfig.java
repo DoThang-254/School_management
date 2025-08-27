@@ -26,7 +26,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http , AuthenticationConfig authconfig
+                                                   ) throws Exception {
         http.authorizeHttpRequests(
                 configurer ->
                         configurer.requestMatchers("/home")
@@ -42,9 +43,16 @@ public class SecurityConfig {
         ).formLogin(
                 form -> form.loginPage("/auth/login")
                         .loginProcessingUrl("/authenticateTheUser")
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(authconfig)
                         .permitAll()
-        ).exceptionHandling(
+        ).logout(
+                logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/auth/login?logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll())
+        .exceptionHandling(
                 exception ->
                         exception.accessDeniedPage("/auth/accessdenied")
         );
