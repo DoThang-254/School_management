@@ -57,4 +57,9 @@ public class AccountServiceImp implements AccountService {
     public Account findByUsername(String username) {
         return accountRepository.findByUsername(username);
     }
+
+    @Override
+    public List<Account> getAllAccount() {
+        return accountRepository.findAll();
+    }
 }

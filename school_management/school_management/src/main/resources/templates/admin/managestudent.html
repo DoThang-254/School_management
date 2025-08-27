@@ -7,10 +7,16 @@
 <body>
 <table border="1">
   <tr>
-    <th>Column 1</th>
-    <th>Column 2</th>
-    <th>Column 3</th>
-    <th>Column 4</th>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  <tr th:each="student : ${studentlist}">
+    <td th:text="${student.accountId}"></td>
+    <td th:text = "${student.username}"></td>
+    <td><a>Update</a></td>
+    <td><a>Delete</a></td>
   </tr>
 </table>
 
